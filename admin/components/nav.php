@@ -45,6 +45,7 @@
             <div class="menu" onclick="window.location='./app.php'">앱 관리</div>
             <div class="menu" onclick="window.location='./locations.php'">위치 관리</div>
             <div class="menu" onclick="window.location='./users.php'">유저 관리</div>
+            <div class="menu" onclick="window.location='./reports.php'">문의 목록</div>
             <div class="menu" onclick="window.location='./statistics.php'">통계</div>
         </div>
     </div>

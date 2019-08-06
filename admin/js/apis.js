@@ -337,6 +337,68 @@ const removeLocation= (id, callback)=>{
 }
 
 const myServer= {
+    createReport: (email, title, content, callback)=>{
+        return axios.request({
+            method: 'POST',
+            url: `https://cpsp.site/security-guard/reports.php`,
+            data: {
+                title: title,
+                email: email,
+                content: content,
+            }
+        }).then(response=>{                        
+            console.log(response.data);
+            callback(true, response.data);
+        }).catch(e=>{
+            callback(false, e);
+            console.log(e);
+        });
+    },
+    deleteReports: (callback)=>{
+        return axios.request({
+            method: 'DELETE',
+            url: `https://cpsp.site/security-guard/reports.php`,
+        }).then(response=>{                        
+            console.log(response.data);
+            callback(true, response.data);
+        }).catch(e=>{
+            callback(false, e);
+            console.log(e);
+        });
+    },
+    updateReport: (idx, isResolved, callback)=>{
+        if(isResolved!== 1 && isResolved!== 0){
+            console.log('isResolved is only 1 or 2');
+            return;
+        }
+
+        return axios.request({
+            method: 'PUT',
+            url: `https://cpsp.site/security-guard/reports.php`,
+            data: {
+                idx: idx,
+                resolved: isResolved,
+            }
+        }).then(response=>{                        
+            console.log(response.data);
+            callback(true, response.data);
+        }).catch(e=>{
+            callback(false, e);
+            console.log(e);
+        });
+    },
+    report: (callback)=>{
+        return axios.request({
+            method: 'GET',
+            url: `http://cpsp.site/security-guard/reports.php`,
+        }).then(response=>{
+            console.log(response.data);
+            callback(true, response.data);
+        }).catch(e=>{
+            callback(false, e);
+            console.log(e);
+        });
+    },
     police: (callback)=>{
         return axios.request({
             method: 'GET',
