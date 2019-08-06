@@ -68,9 +68,6 @@
     const uid= "<?php echo $uid;?>";
     const token= "<?php echo $token;?>";
     
-    if(!uid || !token)
-        if(window.location.href.includes('php'))
-            window.location.href='./';
 
 </script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
