@@ -6,30 +6,13 @@
         height: 100%;
         z-index: 10;
         background-color: rgb(26, 188, 156);
-        padding: 18px;
+        padding: 8px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
     }
     nav *{
         color: white;
     }
 
-    nav> .top{
-        
-    }
-    nav> .bottom{
-        position: absolute;
-        bottom: 50px;
-    }
-    nav .menus .menu{
-        cursor: pointer;
-        margin: 16px 0;
-        padding-left: 0;
-        transition-duration: 0.5s;
-        transition-property: padding;
-    }
-    nav .menus .menu:hover{
-        padding-left: 16px;
-    }
 </style>
 <nav>
     <div class="top">

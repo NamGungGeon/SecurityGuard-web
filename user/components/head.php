@@ -53,8 +53,10 @@
 ?>
 
 <title>
-    시큐리티 가드 관리자 페이지
+    시큐리티 가드
 </title>
+
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
 
 <link rel="stylesheet" href="./css/animations.css">
 <link rel="stylesheet" href="./css/loading.css">

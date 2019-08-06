@@ -12,6 +12,9 @@
         <section>
             <div class="contents">
                 <h1>광고 관리</h1>
+                <p class="description">
+                    해당 페이지가 정상적으로 표시되지 않을 경우 애드블럭을 종료하세요
+                </p>
                 <br/><br/>
                 
                 <h3>등록된 광고</h3>
