@@ -19,16 +19,21 @@ section .contents{
     color: black;
     font-size: 1.2rem;
 }
-input[type="text"], input[type="password"]{
+input[type="text"], input[type="password"], textarea{
     background-color: white;
     border: 1px solid #a9a9a9;
     border-radius: 4px;
 
     padding: 8px;
     color: black;
-    width: 300px;
+    width: 80%;
 
     margin-bottom: 16px;
+}
+
+textarea{
+    height: 180px;
+    resize: none;
 }
 
 

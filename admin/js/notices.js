@@ -101,7 +101,7 @@ const openCreateNoticeDialog= ()=>{
         <span class="input-label">공지사항 제목</span>
         <input type="text" id="notice_title" placeholder="title"><br/>
         <span class="input-label">공지사항 내용</span>
-        <input type="text" id="notice_content" placeholder="content"><br/>
+        <textarea autofocus id="notice_content" placeholder="content"></textarea><br/>
         <br/><br/>
         <span class="btn btn-good" onclick="requestCreateNotice()">생성</span>
         `
@@ -119,7 +119,7 @@ const openUpdateNoticeDialog= async (id)=>{
                 <span class="input-label">공지사항 제목</span>
                 <input type="text" id="notice_title" placeholder="title" value="${data.notice.title}"><br/>
                 <span class="input-label">공지사항 내용</span>
-                <input type="text" id="notice_content" placeholder="content" value="${data.notice.content}"><br/>
+                <textarea id="notice_content" autofocus placeholder="content" value="${data.notice.content}"></textarea><br/>
                 <br/><br/>
                 <span class="btn btn-good" onclick="requestUpdateNotice(${id})">수정</span>
                 `

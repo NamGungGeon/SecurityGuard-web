@@ -11,21 +11,9 @@
         <section>
             <div class="contents">
                 <h1>도움말</h1>
+                <p class="description">처음 사용하는 분들을 위한 도움말입니다</p>
                 <br/><br/>
                 
-                <span class="input-label">아이디</span>
-                <input type="text" id="user_id" placeholder="ID"><br/>
-                <span class="input-label">패스워드</span>
-                <input type="password" id="user_pw" placeholder="PASSWORD"><br/>
-
-                <br/>
-                <span class="btn btn-good" onclick="login()">로그인</span>
-                <span class="btn btn-normal" onclick="moveUrl('./register.php')">회원가입</span>
-
-                <form method="POST" action="./ads.php" id="letsGo">
-                    <input type="hidden" id="id" name="uid">
-                    <input type="hidden" id="token" name="token">
-                </form>
             </div>
         </section>
     </body>
