@@ -1,5 +1,6 @@
 
 
+
 const requestCreateLocation= async ()=>{
     const id= $("#user_id").val();
     const pw= $("#user_pw").val();
@@ -22,6 +23,7 @@ const requestCreateLocation= async ()=>{
     });
     offLoading();
 }
+
 const openCreateLocationDialog= ()=>{
     
     openDialog(
@@ -54,19 +56,84 @@ const typeFilter= (level)=>{
             return level;
     }
 }
+
+const infras= [];
+const findInfra= (level, idx, lat, lng)=>{
+    let search= null;
+    infras.map((value)=>{
+        if(value.level== level && value.idx== idx && value.lat== lat && value.lng== lng){
+            search= value;
+        }
+    });
+    return search;
+}
+let currentInfra= null;
+
+
+const Map= {
+    mapView: null,
+    init: ()=>{
+        const container = document.getElementById('map');
+        const options = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667),
+            level: 3
+        };
+    
+        Map.mapView= new kakao.maps.Map(container, options);
+    },
+    marker: null,
+    marking: (lat, lng)=>{
+        if(Map.marker)
+            Map.marker.setMap(null);
+        
+        Map.marker = new kakao.maps.Marker({
+            map: Map.mapView,
+            position: new kakao.maps.LatLng(lat, lng)
+        });
+        Map.moveCamera(lat, lng);
+        Map.marker.setMap(Map.mapView);
+        Map.marker.setDraggable(true);
+
+
+        kakao.maps.event.addListener(Map.marker, 'dragend', (e)=>{
+            const lat= Map.marker.getPosition().Ga;
+            const lng= Map.marker.getPosition().Ha;
+
+            openDialog(
+                `
+                <h3>위치 변경</h3>
+                <p class="description">${currentInfra.name}</p>
+                <br/><br/>
+                <h4>해당 마커 위치로 위치를 변경하시겠습니까</h4>
+                <br/><br/>
+                <span class="btn btn-good"  onclick="(()=>{makeToast('개발중'); closeDialog()})()">변경</span>
+                <span class="btn btn-alert" onclick="(()=>{Map.marking(${currentInfra.lat}, ${currentInfra.lng}); closeDialog()})()">취소</span>
+                `
+            , true);
+        });
+    },
+    moveCamera: (lat, lng)=>{
+        Map.mapView.setCenter(new kakao.maps.LatLng(lat, lng));
+    },
+    buildLatlng: (lat, lng)=>{
+        return new kakao.maps.LatLng(lat, lng);
+    },
+}
+
 const init= async ()=>{
     onLoading();
+    Map.init();
 
     await myServer.getAll((result, data)=>{
         if(result){
-            const htmls= data.map((value)=>{
+            const htmls= data.map((value, idx)=>{
+                infras.push(value);
+
                 return `
-                    <tr>
+                    <tr onclick="(()=>{Map.marking(${value.lat}, ${value.lng}); currentInfra= findInfra(${value.level}, ${value.idx}, ${value.lat}, ${value.lng})})()">
                         <td>${value.name}</td>
                         <td>${typeFilter(value.level)}</td>
                         <td>${value.addr}</td>
-                        <td>${value.lng}</td>
-                        <td>${value.lat}</td>
                     </tr>
                 `;
             }).join(''); 
@@ -77,8 +144,6 @@ const init= async ()=>{
                             <th>이름</th>
                             <th>타입</th>
                             <th>주소</th>
-                            <th>위도</th>
-                            <th>경도</th>
                         </tr>
                         ${htmls}
                     </table>
@@ -96,7 +161,6 @@ const init= async ()=>{
 $(document).ready(()=>{
     init();
     makeToast(`이 페이지 로딩은 오래 걸릴 수 있습니다.<br/>최대 1분정도 소요됩니다`);
-
 });
 
 const testcode= ()=>{
