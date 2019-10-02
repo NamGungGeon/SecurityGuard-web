@@ -91,7 +91,7 @@ const init= async ()=>{
                             <th>답장 필요</th>
                         </tr>
                         ${reports.map((value)=>{
-                            if(value.resolved=== "0"){
+                            if(value.resolved=== 0){
                                 exist= true;
                                 return `<tr onclick="openDetailReportDialog('${value.idx}')"><td>${value.title}</td><td>${value.uploadDate}</td><td>${value.email? "Y": "N"}</td></tr>`;
                             }
@@ -112,7 +112,7 @@ const init= async ()=>{
                             <th>답장 필요</th>
                         </tr>
                         ${reports.map((value)=>{
-                            if(value.resolved=== "1"){
+                            if(value.resolved=== 1){
                                 exist= true;
                                 return `<tr onclick="openDetailReportDialog('${value.idx}')"><td>${value.title}</td><td>${value.uploadDate}</td><td>${value.email? "Y": "N"}</td></tr>`;
                             }
